@@ -29,8 +29,6 @@ service PD {
 
     rpc AllocID(AllocIDRequest) returns (AllocIDResponse) {}
 
-    rpc RecoverAllocID(RecoverAllocIDRequest) returns (RecoverAllocIDResponse) {}
-
     rpc IsSnapshotRecovering(IsSnapshotRecoveringRequest) returns (IsSnapshotRecoveringResponse) {}
 
     rpc GetStore(GetStoreRequest) returns (GetStoreResponse) {}
@@ -212,16 +210,6 @@ message AllocIDResponse {
     ResponseHeader header = 1;
 
     uint64 id = 2;
-}
-
-message RecoverAllocIDRequest {
-    RequestHeader header = 1;
-
-    uint64 id = 2;
-}
-
-message RecoverAllocIDResponse {
-    ResponseHeader header = 1;
 }
 
 message IsSnapshotRecoveringRequest {
