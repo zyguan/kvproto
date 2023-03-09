@@ -10262,6 +10262,11 @@
                 "id": 3,
                 "name": "logical_table_id",
                 "type": "int64"
+              },
+              {
+                "id": 8,
+                "name": "keyspace_id",
+                "type": "uint32"
               }
             ]
           },
