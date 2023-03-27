@@ -3826,7 +3826,7 @@
               {
                 "id": 1,
                 "name": "data_file_key",
-                "type": "string"
+                "type": "bytes"
               },
               {
                 "id": 3,
@@ -3856,7 +3856,7 @@
               {
                 "id": 1,
                 "name": "data_file_key",
-                "type": "string"
+                "type": "bytes"
               }
             ]
           },
@@ -3964,6 +3964,73 @@
             ]
           },
           {
+            "name": "EstablishDisaggTaskError",
+            "fields": [
+              {
+                "id": 1,
+                "name": "error_region",
+                "type": "ErrorRegion"
+              },
+              {
+                "id": 2,
+                "name": "error_locked",
+                "type": "ErrorLocked"
+              },
+              {
+                "id": 99,
+                "name": "error_other",
+                "type": "ErrorOther"
+              }
+            ]
+          },
+          {
+            "name": "ErrorRegion",
+            "fields": [
+              {
+                "id": 1,
+                "name": "msg",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "region_ids",
+                "type": "uint64",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ErrorLocked",
+            "fields": [
+              {
+                "id": 1,
+                "name": "msg",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "locked",
+                "type": "kvrpcpb.LockInfo",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ErrorOther",
+            "fields": [
+              {
+                "id": 1,
+                "name": "code",
+                "type": "int32"
+              },
+              {
+                "id": 2,
+                "name": "msg",
+                "type": "string"
+              }
+            ]
+          },
+          {
             "name": "EstablishDisaggTaskRequest",
             "fields": [
               {
@@ -4011,13 +4078,7 @@
               {
                 "id": 1,
                 "name": "error",
-                "type": "DisaggReadError"
-              },
-              {
-                "id": 2,
-                "name": "retry_regions",
-                "type": "metapb.Region",
-                "is_repeated": true
+                "type": "EstablishDisaggTaskError"
               },
               {
                 "id": 3,
@@ -4095,9 +4156,6 @@
         "imports": [
           {
             "path": "coprocessor.proto"
-          },
-          {
-            "path": "metapb.proto"
           },
           {
             "path": "kvrpcpb.proto"
