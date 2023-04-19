@@ -15845,6 +15845,11 @@
                 "id": 5,
                 "name": "generate_duration_sec",
                 "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "tablet_snap_path",
+                "type": "string"
               }
             ]
           },
