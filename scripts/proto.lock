@@ -15955,6 +15955,16 @@
                 "id": 3,
                 "name": "data",
                 "type": "bytes"
+              },
+              {
+                "id": 4,
+                "name": "iv",
+                "type": "bytes"
+              },
+              {
+                "id": 5,
+                "name": "key",
+                "type": "encryptionpb.DataKey"
               }
             ]
           },
@@ -16405,6 +16415,9 @@
           },
           {
             "path": "disk_usage.proto"
+          },
+          {
+            "path": "encryptionpb.proto"
           },
           {
             "path": "rustproto.proto"
