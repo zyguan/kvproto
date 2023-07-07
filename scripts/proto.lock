@@ -6159,8 +6159,9 @@
               },
               {
                 "id": 2,
-                "name": "range",
-                "type": "Range"
+                "name": "ranges",
+                "type": "Range",
+                "is_repeated": true
               }
             ]
           },
