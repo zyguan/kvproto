@@ -16705,6 +16705,11 @@
                 "id": 6,
                 "name": "tablet_snap_path",
                 "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "commit_index_hint",
+                "type": "uint64"
               }
             ]
           },
