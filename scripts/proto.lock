@@ -12196,6 +12196,18 @@
             ]
           },
           {
+            "name": "ControlGrpcEvent",
+            "enum_fields": [
+              {
+                "name": "PAUSE"
+              },
+              {
+                "name": "RESUME",
+                "integer": 1
+              }
+            ]
+          },
+          {
             "name": "OperatorStatus",
             "enum_fields": [
               {
@@ -13655,6 +13667,11 @@
                 "id": 26,
                 "name": "slow_trend",
                 "type": "SlowTrend"
+              },
+              {
+                "id": 27,
+                "name": "is_grpc_paused",
+                "type": "bool"
               }
             ]
           },
@@ -13869,6 +13886,16 @@
             ]
           },
           {
+            "name": "ControlGrpc",
+            "fields": [
+              {
+                "id": 1,
+                "name": "ctrl_event",
+                "type": "ControlGrpcEvent"
+              }
+            ]
+          },
+          {
             "name": "StoreHeartbeatResponse",
             "fields": [
               {
@@ -13906,6 +13933,11 @@
                 "id": 6,
                 "name": "awaken_regions",
                 "type": "AwakenRegions"
+              },
+              {
+                "id": 7,
+                "name": "control_grpc",
+                "type": "ControlGrpc"
               }
             ]
           },
