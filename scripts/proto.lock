@@ -7139,6 +7139,42 @@
                 "type": "KeyspaceMeta"
               }
             ]
+          },
+          {
+            "name": "GetAllKeyspacesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "header",
+                "type": "pdpb.RequestHeader"
+              },
+              {
+                "id": 2,
+                "name": "start_id",
+                "type": "uint32"
+              },
+              {
+                "id": 3,
+                "name": "limit",
+                "type": "uint32"
+              }
+            ]
+          },
+          {
+            "name": "GetAllKeyspacesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "header",
+                "type": "pdpb.ResponseHeader"
+              },
+              {
+                "id": 2,
+                "name": "keyspaces",
+                "type": "KeyspaceMeta",
+                "is_repeated": true
+              }
+            ]
           }
         ],
         "services": [
@@ -7160,6 +7196,11 @@
                 "name": "UpdateKeyspaceState",
                 "in_type": "UpdateKeyspaceStateRequest",
                 "out_type": "UpdateKeyspaceStateResponse"
+              },
+              {
+                "name": "GetAllKeyspaces",
+                "in_type": "GetAllKeyspacesRequest",
+                "out_type": "GetAllKeyspacesResponse"
               }
             ]
           }
