@@ -309,7 +309,8 @@ message FlashbackToVersionResponse {
 
 message GetRegionReadProgressRequest {
     uint64 region_id = 1;
-    bool log_locks = 2; // when set to true, print logs of locks in the resolver of this region
+    bool log_locks = 2; // when set to true, print a log of the locks with min start_ts in the resolver.
+    uint64 min_start_ts = 3; // only print locks whose start_ts >= min_start_ts. Can be used to find certain transaction.
 }
 
 message GetRegionReadProgressResponse {
@@ -324,12 +325,17 @@ message GetRegionReadProgressResponse {
     uint64 duration_to_last_update_safe_ts_ms = 8;
     uint64 duration_to_last_consume_leader_ms = 9;
     bool region_read_progress_exist = 10;
+    uint64 read_state_ts = 18;
+    uint64 read_state_apply_index = 19;
+    bool discard = 20;
     
     // below are from resolved-ts module
     uint64 resolved_ts = 11;
     uint64 resolver_tracked_index = 12;
     bool resolver_exist = 13;
     bool resolver_stopped = 14;
-    
+    uint64 num_locks = 16;
+    uint64 num_transactions = 17;
+
     string error = 15;
 }
