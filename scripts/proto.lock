@@ -17945,11 +17945,19 @@
             "name": "RunawayWatchType",
             "enum_fields": [
               {
-                "name": "Exact"
+                "name": "None"
+              },
+              {
+                "name": "Exact",
+                "integer": 1
               },
               {
                 "name": "Similar",
-                "integer": 1
+                "integer": 2
+              },
+              {
+                "name": "Plan",
+                "integer": 3
               }
             ]
           }
@@ -18408,7 +18416,7 @@
               {
                 "id": 1,
                 "name": "lasting_duration_ms",
-                "type": "uint64"
+                "type": "int64"
               },
               {
                 "id": 2,
