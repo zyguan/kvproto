@@ -36,6 +36,11 @@
                 "id": 6,
                 "name": "offset",
                 "type": "int64"
+              },
+              {
+                "id": 7,
+                "name": "keyspaceID",
+                "type": "uint32"
               }
             ]
           },
