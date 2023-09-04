@@ -15901,6 +15901,11 @@
                     "value": "true"
                   }
                 ]
+              },
+              {
+                "id": 5,
+                "name": "amortize_source_region_size",
+                "type": "bool"
               }
             ]
           },
@@ -15931,6 +15936,11 @@
               {
                 "id": 2,
                 "name": "right_derive",
+                "type": "bool"
+              },
+              {
+                "id": 3,
+                "name": "amortize_source_region_size",
                 "type": "bool"
               }
             ]
