@@ -1,6 +1,7 @@
 syntax = "proto3";
 package schedulingpb;
 
+import "pdpb.proto";
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
 
@@ -11,6 +12,37 @@ option (rustproto.lite_runtime_all) = true;
 
 option java_package = "org.tikv.kvproto";
 
+service Scheduling {
+    rpc StoreHeartbeat(StoreHeartbeatRequest) returns (StoreHeartbeatResponse) {}
+}
+
+message RequestHeader {
+    // cluster_id is the ID of the cluster which be sent to.
+    uint64 cluster_id = 1;
+    // sender_id is the ID of the sender server.
+    uint64 sender_id = 2;
+}
+
+message ResponseHeader {
+    // cluster_id is the ID of the cluster which sent the response.
+    uint64 cluster_id = 1;
+    Error error = 2;
+}
+
+enum ErrorType {
+    OK = 0;
+    UNKNOWN = 1;
+    NOT_BOOTSTRAPPED = 2;
+    ALREADY_BOOTSTRAPPED = 3;
+    INVALID_VALUE = 4;
+    CLUSTER_MISMATCHED = 5;
+}
+
+message Error {
+    ErrorType type = 1;
+    string message = 2;
+}
+
 message Participant {
     // name is the unique name of the scheduling participant.
     string name = 1;
@@ -19,4 +51,14 @@ message Participant {
     // listen_urls is the serivce endpoint list in the url format.
     // listen_urls[0] is primary service endpoint.
     repeated string listen_urls = 3;
+}
+
+message StoreHeartbeatRequest {
+    RequestHeader header = 1;
+    pdpb.StoreStats stats = 2;
+}
+
+message StoreHeartbeatResponse {
+    ResponseHeader header = 1;
+    string cluster_version = 2;
 }
