@@ -10464,6 +10464,16 @@
                 "id": 5,
                 "name": "total_rpc_wall_time_ns",
                 "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "kv_grpc_exec_time_ns",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "kv_grpc_wait_time_ns",
+                "type": "uint64"
               }
             ]
           },
