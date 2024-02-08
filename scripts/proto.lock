@@ -20035,6 +20035,11 @@
                 "id": 3,
                 "name": "transport_layer_load",
                 "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "health_feedback",
+                "type": "HealthFeedback"
               }
             ],
             "messages": [
@@ -20284,6 +20289,26 @@
                 "id": 1,
                 "name": "test_id",
                 "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "HealthFeedback",
+            "fields": [
+              {
+                "id": 1,
+                "name": "store_id",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "feedback_seq_no",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "slow_score",
+                "type": "int32"
               }
             ]
           }
