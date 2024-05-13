@@ -11616,6 +11616,51 @@
                 "type": "ExecDetailsV2"
               }
             ]
+          },
+          {
+            "name": "GetHealthFeedbackRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "context",
+                "type": "Context"
+              }
+            ]
+          },
+          {
+            "name": "GetHealthFeedbackResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "region_error",
+                "type": "errorpb.Error"
+              },
+              {
+                "id": 2,
+                "name": "health_feedback",
+                "type": "HealthFeedback"
+              }
+            ]
+          },
+          {
+            "name": "HealthFeedback",
+            "fields": [
+              {
+                "id": 1,
+                "name": "store_id",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "feedback_seq_no",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "slow_score",
+                "type": "int32"
+              }
+            ]
           }
         ],
         "imports": [
@@ -20106,6 +20151,12 @@
                     "oneof_parent": "cmd"
                   },
                   {
+                    "id": 39,
+                    "name": "GetHealthFeedback",
+                    "type": "kvrpcpb.GetHealthFeedbackRequest",
+                    "oneof_parent": "cmd"
+                  },
+                  {
                     "id": 255,
                     "name": "Empty",
                     "type": "BatchCommandsEmptyRequest",
@@ -20146,7 +20197,7 @@
               {
                 "id": 4,
                 "name": "health_feedback",
-                "type": "HealthFeedback"
+                "type": "kvrpcpb.HealthFeedback"
               }
             ],
             "messages": [
@@ -20346,6 +20397,12 @@
                     "oneof_parent": "cmd"
                   },
                   {
+                    "id": 39,
+                    "name": "GetHealthFeedback",
+                    "type": "kvrpcpb.GetHealthFeedbackResponse",
+                    "oneof_parent": "cmd"
+                  },
+                  {
                     "id": 255,
                     "name": "Empty",
                     "type": "BatchCommandsEmptyResponse",
@@ -20396,26 +20453,6 @@
                 "id": 1,
                 "name": "test_id",
                 "type": "uint64"
-              }
-            ]
-          },
-          {
-            "name": "HealthFeedback",
-            "fields": [
-              {
-                "id": 1,
-                "name": "store_id",
-                "type": "uint64"
-              },
-              {
-                "id": 2,
-                "name": "feedback_seq_no",
-                "type": "uint64"
-              },
-              {
-                "id": 3,
-                "name": "slow_score",
-                "type": "int32"
               }
             ]
           }
@@ -20774,6 +20811,11 @@
                 "name": "GetDisaggConfig",
                 "in_type": "disaggregated.GetDisaggConfigRequest",
                 "out_type": "disaggregated.GetDisaggConfigResponse"
+              },
+              {
+                "name": "GetHealthFeedback",
+                "in_type": "kvrpcpb.GetHealthFeedbackRequest",
+                "out_type": "kvrpcpb.GetHealthFeedbackResponse"
               }
             ]
           }
