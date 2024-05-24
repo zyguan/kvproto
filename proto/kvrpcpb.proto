@@ -23,10 +23,17 @@ option java_package = "org.tikv.kvproto";
 
 // A transactional get command. Lookup a value for `key` in the transaction with
 // starting timestamp = `version`.
+
+enum GetFlags {
+    NONE = 0x00;
+    NEED_DATA_VERSION = 0x01;
+}
+
 message GetRequest {
     Context context = 1;
     bytes key = 2;
     uint64 version = 3;
+    uint32 flags = 4;
 }
 
 message GetResponse {
@@ -42,6 +49,8 @@ message GetResponse {
     reserved 5;
     // Time and scan details when processing the request.
     ExecDetailsV2 exec_details_v2 = 6;
+    // The data version if available.
+    uint64 version = 7;
 }
 
 // Scan fetches values for a range of keys; it is part of the transaction with
@@ -427,6 +436,7 @@ message BatchGetRequest {
     Context context = 1;
     repeated bytes keys = 2;
     uint64 version = 3;
+    uint32 flags = 4;
 }
 
 message BatchGetResponse {
@@ -439,6 +449,7 @@ message BatchGetResponse {
     // In this case, `pairs` should be empty and the client should redo batch get all the keys
     // after resolving the lock.
     KeyError error = 5;
+    repeated uint64 versions = 6;
 }
 
 // Rollback a prewritten transaction. This will remove the preliminary data from the database,
@@ -870,7 +881,7 @@ message Context {
     // The source of the request, will be used as the tag of the metrics reporting.
     // This field can be set for any requests that require to report metrics with any extra labels.
     string request_source = 24;
-    
+
     // The source of the current transaction.
     uint64 txn_source = 25;
 
@@ -886,11 +897,11 @@ message Context {
     // The keyspace that the request is sent to.
     // NOTE: This field is only meaningful while the api_version is V2.
     uint32 keyspace_id = 32;
-    
+
     // The buckets version that the request is sent to.
     // NOTE: This field is only meaningful while enable buckets.
     uint64 buckets_version = 33;
-    
+
     // It tells us where the request comes from in TiDB. If it isn't from TiDB, leave it blank.
     // This is for tests only and thus can be safely changed/removed without affecting compatibility.
     SourceStmt source_stmt = 34;
@@ -908,7 +919,7 @@ message ResourceControlContext {
     resource_manager.Consumption penalty = 2;
 
     // This priority would override the original priority of the resource group for the request.
-    // Used to deprioritize the runaway queries. 
+    // Used to deprioritize the runaway queries.
     uint64 override_priority = 3;
 }
 
@@ -989,7 +1000,7 @@ message LockInfo {
     uint64 min_commit_ts = 9;
     repeated bytes secondaries = 10;
     // The time elapsed since last update of lock wait info when waiting.
-    // It's used in timeout errors. 0 means unknown or not applicable. 
+    // It's used in timeout errors. 0 means unknown or not applicable.
     // It can be used to help the client decide whether to try resolving the lock.
     uint64 duration_to_last_update_ms = 11;
 
@@ -1562,7 +1573,7 @@ message TiFlashSystemTableResponse {
     bytes data = 1 [(gogoproto.customtype) = "github.com/pingcap/kvproto/pkg/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
 }
 
-// Flush is introduced from the pipelined DML protocol. 
+// Flush is introduced from the pipelined DML protocol.
 // A Flush request writes some keys and values to TiKV, storing in LOCK and DEFAULT CF, just like a Prewrite request.
 message FlushRequest {
     Context context = 1;

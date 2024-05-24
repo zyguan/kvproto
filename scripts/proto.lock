@@ -7750,6 +7750,18 @@
       "def": {
         "enums": [
           {
+            "name": "GetFlags",
+            "enum_fields": [
+              {
+                "name": "NONE"
+              },
+              {
+                "name": "NEED_DATA_VERSION",
+                "integer": 1
+              }
+            ]
+          },
+          {
             "name": "PrewriteRequest.PessimisticAction",
             "enum_fields": [
               {
@@ -8016,6 +8028,11 @@
                 "id": 3,
                 "name": "version",
                 "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "flags",
+                "type": "uint32"
               }
             ]
           },
@@ -8046,6 +8063,11 @@
                 "id": 6,
                 "name": "exec_details_v2",
                 "type": "ExecDetailsV2"
+              },
+              {
+                "id": 7,
+                "name": "version",
+                "type": "uint64"
               }
             ],
             "reserved_ids": [
@@ -8839,6 +8861,11 @@
                 "id": 3,
                 "name": "version",
                 "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "flags",
+                "type": "uint32"
               }
             ]
           },
@@ -8865,6 +8892,12 @@
                 "id": 5,
                 "name": "error",
                 "type": "KeyError"
+              },
+              {
+                "id": 6,
+                "name": "versions",
+                "type": "uint64",
+                "is_repeated": true
               }
             ],
             "reserved_ids": [
