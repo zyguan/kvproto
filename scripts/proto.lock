@@ -13024,6 +13024,10 @@
               {
                 "name": "DATA_COMPACTED",
                 "integer": 11
+              },
+              {
+                "name": "REGIONS_NOT_CONTAIN_ALL_KEY_RANGE",
+                "integer": 12
               }
             ]
           },
@@ -13787,6 +13791,11 @@
                 "id": 4,
                 "name": "limit",
                 "type": "int32"
+              },
+              {
+                "id": 5,
+                "name": "contain_all_key_range",
+                "type": "bool"
               }
             ]
           },
