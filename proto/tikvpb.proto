@@ -198,7 +198,7 @@ message BatchCommandsRequest {
 }
 
 message BatchCommandsResponse {
-    repeated Response responses = 1;
+    repeated Response responses = 1 [(gogoproto.customtype) = "github.com/pingcap/kvproto/pkg/sharedbytes.SharedBytes", (gogoproto.nullable) = false];
     repeated uint64 request_ids = 2;
     // 280 means TiKV gRPC cpu usage is 280%.
     uint64 transport_layer_load = 3;
@@ -242,7 +242,7 @@ message BatchCommandsResponse {
 
             kvrpcpb.FlashbackToVersionResponse FlashbackToVersion = 35;
             kvrpcpb.PrepareFlashbackToVersionResponse PrepareFlashbackToVersion = 36;
-            
+
             kvrpcpb.FlushResponse Flush = 37;
             kvrpcpb.BufferBatchGetResponse BufferBatchGet = 38;
 
