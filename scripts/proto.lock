@@ -10939,6 +10939,11 @@
                 "is_repeated": true
               },
               {
+                "id": 13,
+                "name": "shrink_only",
+                "type": "bool"
+              },
+              {
                 "id": 100,
                 "name": "is_txn_file",
                 "type": "bool"

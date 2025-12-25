@@ -1010,6 +1010,8 @@ message LockInfo {
     // supports shared locks, so that tikv can fail the requests from old tidb versions
     // when needed.
     repeated LockInfo shared_lock_infos = 12;
+    // Indicates whether the lock is a shrink-only, only apply to shared locks.
+    bool shrink_only = 13;
 
     // Reserved for file based transaction.
     bool is_txn_file = 100;
